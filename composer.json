@@ -1,0 +1,13 @@
+{
+    "name": "app/activity-tracker",
+    "description": "This is pure PHP app called Activity Tracker. It will just track activity :D",
+    "type": "project",
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
