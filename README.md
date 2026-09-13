@@ -20,22 +20,26 @@ page views, and button clicks. Built on pure PHP without frameworks and run with
 
 - Docker Desktop
 
-
 ## Setup
 
 ### 1. Configure environment
 
 Run this command in the terminal:
 
-> cp .env.example .env
+```
+cp .env.example .env
+```
 
 Then put credentials that you want for username and password.
-Restart the docker with docker compose restart to apply changes if on the first place doesn't work.
+Restart the docker with `docker compose restart` to apply changes if on the first place doesn't work.
 
 ### 2. Start the containers
 
 From the project root, run:
-> docker compose up -d --build
+
+```
+docker compose up -d --build
+```
 
 This starts the services for:
 
@@ -43,13 +47,17 @@ This starts the services for:
 - PHP and Nginx
 - MySQL
 
-
 After that in terminal need to run next command:
-> docker exec -it activity-tracker-php-1 bash.
+
+```
+docker exec -it activity-tracker-php-1 bash
+```
 
 Then go with this command when you are in PHP container:
-> composer install
 
+```
+composer install
+```
 
 ### 3. Create the database tables
 
@@ -59,18 +67,21 @@ phpMyAdmin.
 
 **Option A — terminal**
 
-> Import `users` before `events` — the `events` table has a foreign key that
- references `users`, so the `users` table must exist first.
+Import `users` before `events` — the `events` table has a foreign key that references `users`, so the `users` table must exist first.
 
+```
+Get-Content database/01_users.sql | docker compose exec -T mysql mysql -u <user> -p<password> activity
+```
 
-> Get-Content database/01_users.sql | docker compose exec -T mysql mysql -u <user> -p<password> activity
-> Get-Content database/02_events.sql | docker compose exec -T mysql mysql -u <user> -p<password> activity
-
+```
+Get-Content database/02_events.sql | docker compose exec -T mysql mysql -u <user> -p<password> activity
+```
 
 Verify the tables were created:
 
-> docker compose exec mysql mysql -u <user> -p <password> activity -e "SHOW TABLES;"
-
+```
+docker compose exec mysql mysql -u <user> -p<password> activity -e "SHOW TABLES;"
+```
 
 **Option B — via phpMyAdmin**
 
@@ -81,17 +92,17 @@ Verify the tables were created:
 5. Paste the contents of `database/01_users.sql` and click **Go**.
 6. Paste the contents of `database/02_events.sql` and click **Go**.
 
-> Import `users` before `events` — the `events` table has a foreign key that
- references `users`, so the `users` table must exist first.
-
+Import `users` before `events` — the `events` table has a foreign key that references `users`, so the `users` table must exist first.
 
 ## Unit Test
+
 The tests you can run via command:
 
-> docker compose exec php ./vendor/bin/phpunit
-
+```
+docker compose exec php ./vendor/bin/phpunit
+```
 
 ## Usage
 
-Open the app at **http://localhost:8080**. 
+Open the app at **http://localhost:8080**.
 Open PHPMyAdmin at **http://localhost:8081**.
