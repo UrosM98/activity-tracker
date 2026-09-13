@@ -9,7 +9,7 @@ services:
     depends_on:
       - php                         
 
-   php:
+  php:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
