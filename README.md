@@ -44,6 +44,14 @@ This starts the services for:
 - PHP and Nginx
 - MySQL
 
+
+After that in terminal need to run next command:
+> docker exec -it activity-tracker-php-1 bash.
+
+Then go with this command when you are in PHP container:
+> composer install
+
+
 ### 3. Create the database tables
 
 The `activity` database is created automatically, but the tables are not, so you
