@@ -21,7 +21,6 @@ page views, and button clicks. Built on pure PHP without frameworks and run with
 - Docker Desktop
 
 
-
 ## Setup
 
 ### 1. Configure environment
@@ -84,6 +83,13 @@ Verify the tables were created:
 
 > Import `users` before `events` — the `events` table has a foreign key that
  references `users`, so the `users` table must exist first.
+
+
+## Unit Test
+The tests you can run via command:
+
+> docker compose exec php ./vendor/bin/phpunit
+
 
 ## Usage
 
