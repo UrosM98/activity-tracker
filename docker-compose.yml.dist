@@ -9,32 +9,32 @@ services:
     depends_on:
       - php                         
 
-  php:
+   php:
     build:
-      context: .                      
-      dockerfile: docker/php/Dockerfile   
+      context: .
+      dockerfile: docker/php/Dockerfile
     volumes:
-      - ./:/var/www/html              
-    environment:                      
-      DB_HOST: mysql                  
+      - ./:/var/www/html
+    environment:
+      DB_HOST: mysql
       DB_PORT: 3306
-      DB_NAME: activity
-      DB_USER: app
-      DB_PASSWORD: appSecret
+      DB_NAME: ${DB_DATABASE}
+      DB_USER: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
     depends_on:
       - mysql
 
   mysql:
     image: mysql:8.0
-    environment:                     
-      MYSQL_ROOT_PASSWORD: rootSecret
-      MYSQL_DATABASE: activity        
-      MYSQL_USER: app                
-      MYSQL_PASSWORD: appSecret     
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3306:3306"                   
+      - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql        
+      - db_data:/var/lib/mysql     
   phpmyadmin:
     image: phpmyadmin:5.2
     ports:
