@@ -35,6 +35,15 @@ Restart the docker with `docker compose restart` to apply changes if on the firs
 
 ### 2. Start the containers
 
+Change from:
+```
+docker-compose.yml.dist
+```
+To:
+```
+docker-compose.yml
+```
+
 From the project root, run:
 
 ```
